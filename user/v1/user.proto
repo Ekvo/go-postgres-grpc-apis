@@ -14,7 +14,7 @@ service UserService {
 
 // User model
 message User {
-  string id = 1;
+  uint64 id = 1;
   string login = 2;
   string first_name = 3;
   string last_name = 4;
@@ -34,7 +34,7 @@ message SignUpRequest {
 }
 
 message SignUpResponse {
-  string user_id = 1;
+  uint64 user_id = 1;
 }
 
 // Login API
