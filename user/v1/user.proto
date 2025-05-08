@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package user.v1;
+
+option go_package = "github.com/Ekvo/go-postgres-apis/user/v1";
+
+service UserService {
+  rpc SignUp(SignUpRequest) returns (SignUpResponse);
+  rpc Login(LoginRequest) returns (LoginResponse);
+  rpc UserData(UserDataRequest) returns (UserDataResponse);
+}
+
+// User model
+message User {
+  string id = 1;
+  string login = 2;
+  string first_name = 3;
+  string last_name = 4;
+  string email = 5;
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp updated_at = 7;
+}
+
+// Register API
+message SignUpRequest {
+  string login = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string email = 4;
+  string password = 5;
+  google.protobuf.Timestamp created_at = 6;
+}
+
+message SignUpResponse {
+  string user_id = 1;
+}
+
+// Login API
+message LoginRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  string token = 1;
+}
+
+// UserData API (token take from metadata)
+message UserDataRequest {}
+
+message UserDataResponse {
+  User user = 1;
+}
+
+
+
+
